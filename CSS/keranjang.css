@@ -1,0 +1,348 @@
+/* CSS untuk halaman keranjang belanja */
+:root {
+  --primary: #89aaaf;
+  --primary-light: #a6c1c5;
+  --primary-dark: #6d878c;
+  --bg: #fff;
+  --bg_produk: #ffe3d1;
+  --fonts: #36486b;
+  --fonts-light: #5a6d8c;
+  --accent: #f3c9b1;
+  --error: #e74c3c;
+  --success: #2ecc71;
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+}
+
+/* Keranjang section */
+.keranjang-section {
+  padding: 6rem 0 4rem;
+  min-height: 80vh;
+}
+
+.keranjang-title {
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 1rem;
+  color: var(--fonts);
+  font-weight: 600;
+}
+
+.keranjang-title span {
+  color: var(--primary);
+}
+
+.keranjang-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--primary);
+}
+
+/* Keranjang kosong */
+.keranjang-kosong-icon {
+  font-size: 5rem;
+  color: var(--gray-400);
+  margin-bottom: 1.5rem;
+}
+
+.keranjang-kosong-icon i {
+  opacity: 0.7;
+}
+
+/* Keranjang header */
+.keranjang-header {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--gray-300);
+  margin-bottom: 1.5rem;
+}
+
+.keranjang-header h5 {
+  font-weight: 600;
+  color: var(--fonts);
+  margin-bottom: 0;
+}
+
+/* Keranjang item */
+.keranjang-item {
+  padding: 1.5rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--gray-200);
+  align-items: center;
+}
+
+.produk-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.produk-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.produk-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.produk-detail {
+  flex: 1;
+}
+
+.produk-nama {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: var(--fonts);
+}
+
+.hapus-item {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--error);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.hapus-item:hover {
+  opacity: 0.8;
+}
+
+/* Item price */
+.item-price,
+.item-total {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  color: var(--fonts);
+}
+
+/* Quantity control */
+.item-quantity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  border: 1px solid var(--gray-300);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.quantity-btn {
+  width: 40px;
+  height: 40px;
+  background-color: var(--gray-100);
+  border: none;
+  color: var(--fonts);
+  font-weight: 700;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.quantity-btn:hover {
+  background-color: var(--gray-200);
+}
+
+/* CSS untuk quantity input tanpa kode yang error */
+
+.quantity-input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border: none;
+  border-left: 1px solid var(--gray-300);
+  border-right: 1px solid var(--gray-300);
+  font-weight: 500;
+  color: var(--fonts);
+}
+
+/* Mobile labels */
+.label-mobile {
+  display: none;
+  font-size: 0.8rem;
+  color: var(--fonts-light);
+  margin-top: 0.5rem;
+}
+/* Ringkasan pesanan */
+.ringkasan-pesanan {
+  background-color: var(--gray-100);
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.ringkasan-pesanan h5 {
+  margin-bottom: 1.5rem;
+  color: var(--fonts);
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.ringkasan-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  color: var(--fonts);
+}
+
+.ringkasan-item.total {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--gray-300);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Button styles */
+.btn-primary {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn-outline:hover {
+  background-color: var(--primary-light);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-outline-danger {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: transparent;
+  color: var(--error);
+  border: 1px solid var(--error);
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn-outline-danger:hover {
+  background-color: var(--error);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 767px) {
+  .keranjang-section {
+    padding: 5rem 0 3rem;
+  }
+
+  .keranjang-header {
+    display: none;
+  }
+
+  .produk-info {
+    margin-bottom: 1.5rem;
+  }
+
+  .produk-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .item-price,
+  .item-quantity,
+  .item-total {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+  }
+
+  .label-mobile {
+    display: block;
+  }
+
+  .quantity-control {
+    height: 36px;
+  }
+
+  .quantity-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .quantity-input {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 576px) {
+  .produk-image {
+    width: 60px;
+    height: 60px;
+  }
+
+  .keranjang-item {
+    padding: 1rem 0;
+  }
+
+  .ringkasan-pesanan {
+    padding: 1.2rem;
+  }
+}

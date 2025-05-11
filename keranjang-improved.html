@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Keranjang - Flowers Shop</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- My style -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/keranjang-improved.css" />
+  </head>
+  <body>
+    <!--navbar-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+      <div class="container">
+        <!-- Logo dengan class tambahan untuk positioning -->
+        <a class="navbar-brand" href="index.html">Flowers <span>Shop</span></a>
+
+        <!-- Wadah untuk icon mobile dan toggle -->
+        <div class="d-flex align-items-center">
+          <!-- Icon-icon mobile (hanya tampil di mobile) -->
+          <div class="mobile-icons d-flex d-lg-none align-items-center">
+            <a href="#" class="nav-link position-relative mx-1">
+              <i class="bi bi-search fs-5"></i>
+            </a>
+            <a href="keranjang.html" class="nav-link position-relative mx-1">
+              <i class="bi bi-cart2 fs-5"></i>
+              <span class="badge-keranjang">0</span>
+            </a>
+            <a href="login.html" class="nav-link mx-1" id="mobile-login">
+              <i class="bi bi-person-circle fs-5"></i>
+            </a>
+          </div>
+
+          <!-- Toggle button -->
+          <button
+            class="navbar-toggler ms-2"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <!-- Navbar content yang collapse -->
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html#Beranda"
+                >Beranda</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#Produk">Produk</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#Tentang-Kami"
+                >Tentang Kami</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#Kontak">Kontak</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pembayaran</a>
+            </li>
+          </ul>
+
+          <!-- Icon-icon desktop (hanya tampil di desktop) -->
+          <div class="navbar-extra d-none d-lg-flex align-items-center">
+            <a href="#" class="nav-link position-relative mx-2">
+              <i class="bi bi-search fs-4"></i>
+            </a>
+            <a href="keranjang.html" class="nav-link position-relative mx-2">
+              <i class="bi bi-cart2 fs-4"></i>
+              <span class="badge-keranjang">0</span>
+            </a>
+            <!-- Gunakan sistem logic untuk menampilkan tombol login ATAU profil dropdown -->
+            <div id="user-container">
+              <!-- Tombol login (tampil saat belum login) -->
+              <a href="login.html" class="nav-link ms-2" id="tombol-login">
+                <i class="bi bi-person-circle fs-4"></i>
+              </a>
+
+              <!-- Dropdown user (tampil saat sudah login) -->
+              <div class="dropdown ms-2" id="tombol-user" style="display: none">
+                <a href="#" class="nav-link dropdown-toggle" role="button">
+                  <i class="bi bi-person-fill fs-4"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <div class="dropdown-item fw-bold nama-user">Pengguna</div>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Profil Saya</a>
+                  <a class="dropdown-item" href="#">Pesanan Saya</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#" id="tombol-logout"
+                    >Logout</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!--navbar end-->
+
+    <!-- Keranjang Section -->
+    <section class="keranjang-section">
+      <div class="container">
+        <h2 class="keranjang-title">Keranjang <span>Belanja</span></h2>
+
+        <!-- Container untuk keranjang kosong (tampil jika keranjang kosong) -->
+        <div id="keranjang-kosong" class="empty-cart" style="display: none">
+          <div class="empty-cart-icon">
+            <i class="bi bi-cart-x"></i>
+          </div>
+          <h3>Keranjang Belanja Anda Kosong</h3>
+          <p>Silakan tambahkan produk ke keranjang terlebih dahulu.</p>
+          <a href="index.html#Produk" class="shop-now-btn">Belanja Sekarang</a>
+        </div>
+
+        <!-- Container untuk item keranjang (tampil jika ada item) -->
+        <div id="keranjang-items">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="keranjang-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Produk</th>
+                      <th style="text-align: center">Harga</th>
+                      <th style="text-align: center">Jumlah</th>
+                      <th style="text-align: center">Total</th>
+                      <th style="text-align: center">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="daftar-item-keranjang">
+                    <!-- Item keranjang akan diisi oleh JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Tombol aksi -->
+              <div class="action-buttons">
+                <button id="update-keranjang" class="btn-update">
+                  <i class="bi bi-arrow-clockwise me-2"></i>Update Keranjang
+                </button>
+                <button id="hapus-keranjang" class="btn-empty">
+                  <i class="bi bi-trash me-2"></i>Kosongkan Keranjang
+                </button>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="order-summary">
+                <h3>Ringkasan Pesanan</h3>
+                <div class="summary-item">
+                  <span>Subtotal</span>
+                  <span id="subtotal">Rp 0</span>
+                </div>
+                <div class="summary-item">
+                  <span>Ongkos Kirim</span>
+                  <span id="ongkir">Akan dihitung saat checkout</span>
+                </div>
+                <div class="summary-item total">
+                  <span>Total</span>
+                  <span id="total-pesanan">Rp 0</span>
+                </div>
+                <button id="btn-checkout" class="checkout-btn">
+                  Lanjut ke Checkout
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Template untuk item keranjang (akan diclone oleh JavaScript) -->
+    <template id="template-item-keranjang">
+      <tr class="keranjang-item">
+        <td data-label="Produk">
+          <div class="produk-info">
+            <div class="produk-image">
+              <img src="img/Produk/bunga.jpeg" alt="Produk" />
+            </div>
+            <div class="produk-detail">
+              <h5 class="produk-nama">Nama Produk</h5>
+            </div>
+          </div>
+        </td>
+        <td data-label="Harga" class="harga">
+          <span class="harga-satuan">Rp 100.000</span>
+        </td>
+        <td data-label="Jumlah">
+          <div class="quantity-control">
+            <button class="quantity-btn minus">-</button>
+            <input type="number" min="1" value="1" class="quantity-input" />
+            <button class="quantity-btn plus">+</button>
+          </div>
+        </td>
+        <td data-label="Total" class="total">
+          <span class="harga-total">Rp 100.000</span>
+        </td>
+        <td data-label="Aksi">
+          <button class="hapus-btn"><i class="bi bi-trash"></i> Hapus</button>
+        </td>
+      </tr>
+    </template>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+    <script src="js/keranjang.js"></script>
+    <script>
+      // Modifikasi fungsi tampilkanKeranjang untuk menggunakan layout baru
+      function tampilkanKeranjang() {
+        // Ambil data keranjang dari localStorage
+        const keranjang = JSON.parse(localStorage.getItem("keranjang")) || [];
+
+        // Ambil container untuk item keranjang
+        const containerKeranjang = document.getElementById(
+          "daftar-item-keranjang"
+        );
+        const containerKeranjangKosong =
+          document.getElementById("keranjang-kosong");
+        const containerKeranjangItems =
+          document.getElementById("keranjang-items");
+
+        // Kosongkan container
+        containerKeranjang.innerHTML = "";
+
+        // Jika keranjang kosong, tampilkan pesan
+        if (keranjang.length === 0) {
+          containerKeranjangKosong.style.display = "block";
+          containerKeranjangItems.style.display = "none";
+          return;
+        }
+
+        // Jika ada item di keranjang, sembunyikan pesan keranjang kosong
+        containerKeranjangKosong.style.display = "none";
+        containerKeranjangItems.style.display = "block";
+
+        // Ambil template item keranjang
+        const template = document.getElementById("template-item-keranjang");
+
+        // Variabel untuk menghitung total
+        let subtotal = 0;
+
+        // Loop untuk setiap item di keranjang
+        keranjang.forEach((item, index) => {
+          // Clone template
+          const itemKeranjang = document.importNode(template.content, true);
+          const row = itemKeranjang.querySelector("tr");
+
+          // Tandai dengan data-id
+          row.dataset.id = item.id;
+
+          // Ambil elemen-elemen yang perlu diupdate
+          const namaProduk = itemKeranjang.querySelector(".produk-nama");
+          const gambarElement =
+            itemKeranjang.querySelector(".produk-image img");
+          const hargaSatuan = itemKeranjang.querySelector(".harga-satuan");
+          const quantityInput = itemKeranjang.querySelector(".quantity-input");
+          const hargaTotal = itemKeranjang.querySelector(".harga-total");
+          const tombolHapus = itemKeranjang.querySelector(".hapus-btn");
+          const tombolMinus = itemKeranjang.querySelector(
+            ".quantity-btn.minus"
+          );
+          const tombolPlus = itemKeranjang.querySelector(".quantity-btn.plus");
+
+          // Update value
+          namaProduk.textContent = item.nama;
+          hargaSatuan.textContent = formatRupiah(item.harga);
+          quantityInput.value = item.jumlah;
+          hargaTotal.textContent = formatRupiah(item.harga * item.jumlah);
+
+          // Set sumber gambar berdasarkan ID produk atau default
+          const gambarProduk = {
+            1: "img/Produk/bunga.jpeg", // Bunga Mawar
+            2: "img/Produk/bunga4.jpeg", // Bunga Lily
+            3: "img/Produk/bunga5.jpeg", // Bunga Matahari
+            4: "img/Produk/Bunga1.jpg", // Bunga Tulip
+            5: "img/Produk/Bunga2.jpg", // Bunga Anggrek
+            6: "img/Produk/bunga4.jpeg", // Bunga Krisan
+            default: "img/Produk/bunga.jpeg",
+          };
+          gambarElement.src = gambarProduk[item.id] || gambarProduk.default;
+          gambarElement.alt = item.nama;
+
+          // Event handler untuk tombol hapus
+          tombolHapus.addEventListener("click", () => {
+            hapusItemKeranjang(item.id);
+          });
+
+          // Event handler untuk tombol minus
+          tombolMinus.addEventListener("click", () => {
+            if (quantityInput.value > 1) {
+              quantityInput.value--;
+              updateQuantityItem(item.id, parseInt(quantityInput.value));
+            }
+          });
+
+          // Event handler untuk tombol plus
+          tombolPlus.addEventListener("click", () => {
+            quantityInput.value++;
+            updateQuantityItem(item.id, parseInt(quantityInput.value));
+          });
+
+          // Event handler untuk input quantity
+          quantityInput.addEventListener("change", () => {
+            let jumlah = parseInt(quantityInput.value);
+
+            // Validasi jumlah minimal 1
+            if (jumlah < 1) {
+              jumlah = 1;
+              quantityInput.value = 1;
+            }
+
+            updateQuantityItem(item.id, jumlah);
+          });
+
+          // Tambahkan item ke container
+          containerKeranjang.appendChild(itemKeranjang);
+
+          // Tambahkan ke subtotal
+          subtotal += item.harga * item.jumlah;
+        });
+
+        // Update ringkasan pesanan
+        updateRingkasanPesanan(subtotal);
+      }
+
+      // Fungsi untuk format Rupiah
+      function formatRupiah(angka) {
+        return "Rp " + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      }
+
+      // Fungsi untuk memperbarui tampilan saat pertama kali dimuat
+      document.addEventListener("DOMContentLoaded", function () {
+        // Override fungsi tampilkanKeranjang jika sudah ada di keranjang.js
+        if (typeof window.tampilkanKeranjang === "function") {
+          window.tampilkanKeranjang = tampilkanKeranjang;
+        }
+
+        // Tampilkan keranjang
+        tampilkanKeranjang();
+      });
+    </script>
+    <script src="js/perbaikan-keranjang.js"></script>
+    <script src="js/fix-keranjang-links.js"></script>
+    <script src="js/direct-checkout.js"></script>
+  </body>
+</html>

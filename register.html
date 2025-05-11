@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Registrasi - Flowers Shop</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <form id="registrasi-form"> 
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- My style -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+  <body>
+    <!--navbar-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <!-- Logo dengan class tambahan untuk positioning -->
+        <a class="navbar-brand mobile-brand" href="index.html"
+          >Flowers <span>Shop</span></a
+        >
+
+        <!-- Wadah untuk icon mobile dan toggle -->
+        <div class="d-flex align-items-center">
+          <!-- Icon-icon mobile (hanya tampil di mobile) -->
+          <div class="mobile-icons d-flex d-lg-none align-items-center">
+            <a href="#" class="nav-link position-relative mx-1">
+              <i class="bi bi-search fs-5"></i>
+            </a>
+            <a href="keranjang.html" class="nav-link position-relative mx-1">
+              <i class="bi bi-cart2 fs-5"></i>
+              <span class="badge-keranjang">0</span>
+            </a>
+            <a href="login.html" class="nav-link mx-1" id="mobile-login">
+              <i class="bi bi-person-circle fs-5"></i>
+            </a>
+          </div>
+
+          <!-- Toggle button -->
+          <button
+            class="navbar-toggler ms-2"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <!-- Navbar content yang collapse -->
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html#Beranda"
+                >Beranda</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#Produk">Produk</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#Tentang-Kami"
+                >Tentang Kami</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#Kontak">Kontak</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pembayaran</a>
+            </li>
+          </ul>
+
+          <!-- Icon-icon desktop (hanya tampil di desktop) -->
+          <div class="navbar-extra d-none d-lg-flex align-items-center">
+            <a href="#" class="nav-link position-relative mx-2">
+              <i class="bi bi-search fs-4"></i>
+            </a>
+            <a href="keranjang.html" class="nav-link position-relative mx-2">
+              <i class="bi bi-cart2 fs-4"></i>
+              <span class="badge-keranjang">0</span>
+            </a>
+            <!-- Gunakan sistem logic untuk menampilkan tombol login ATAU profil dropdown -->
+            <div id="user-container">
+              <!-- Tombol login (tampil saat belum login) -->
+              <a href="login.html" class="nav-link ms-2" id="tombol-login">
+                <i class="bi bi-person-circle fs-4"></i>
+              </a>
+
+              <!-- Dropdown user (tampil saat sudah login) -->
+              <div class="dropdown ms-2" id="tombol-user" style="display: none">
+                <a href="#" class="nav-link dropdown-toggle" role="button">
+                  <i class="bi bi-person-fill fs-4"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <div class="dropdown-item fw-bold nama-user">Pengguna</div>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Profil Saya</a>
+                  <a class="dropdown-item" href="#">Pesanan Saya</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#" id="tombol-logout"
+                    >Logout</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!--navbar end-->
+
+    <!-- Registrasi Section Start -->
+    <section class="auth-section">
+      <div class="container">
+        <div class="auth-container">
+          <div class="auth-box">
+            <div class="auth-header">
+              <h2>Daftar <span>Akun</span></h2>
+              <p>
+                Daftar sekarang untuk pengalaman belanja bunga yang lebih baik
+              </p>
+            </div>
+
+            <form id="registrasi-form">
+              <!-- Nama Lengkap -->
+              <div class="form-group">
+                <label for="nama">Nama Lengkap</label>
+                <div class="input-group">
+                  <i class="bi bi-person"></i>
+                  <input
+                    type="text"
+                    id="nama"
+                    name="nama"
+                    placeholder="Masukkan nama lengkap"
+                    required
+                  />
+                </div>
+                <div class="error-message" id="nama-error"></div>
+              </div>
+
+              <!-- Username -->
+              <div class="form-group">
+                <label for="username">Username</label>
+                <div class="input-group">
+                  <i class="bi bi-person-badge"></i>
+                  <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Masukkan username"
+                    required
+                  />
+                </div>
+                <div class="error-message" id="username-error"></div>
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-group">
+                  <i class="bi bi-envelope"></i>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Masukkan email"
+                    required
+                  />
+                </div>
+                <div class="error-message" id="email-error"></div>
+              </div>
+
+              <!-- Nomor HP -->
+              <div class="form-group">
+                <label for="telepon">Nomor HP</label>
+                <div class="input-group">
+                  <i class="bi bi-phone"></i>
+                  <input
+                    type="tel"
+                    id="telepon"
+                    name="telepon"
+                    placeholder="Masukkan nomor HP"
+                    required
+                  />
+                </div>
+                <div class="error-message" id="telepon-error"></div>
+              </div>
+
+              <!-- Alamat -->
+              <div class="form-group">
+                <label for="alamat">Alamat Lengkap</label>
+                <div class="input-group textarea">
+                  <i class="bi bi-geo-alt"></i>
+                  <textarea
+                    id="alamat"
+                    name="alamat"
+                    placeholder="Masukkan alamat lengkap"
+                    required
+                  ></textarea>
+                </div>
+                <div class="error-message" id="alamat-error"></div>
+              </div>
+
+              <!-- Password -->
+              <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-group">
+                  <i class="bi bi-lock"></i>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Masukkan password"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="toggle-password"
+                    onclick="togglePassword('password')"
+                  >
+                    <i class="bi bi-eye"></i>
+                  </button>
+                </div>
+                <div class="error-message" id="password-error"></div>
+              </div>
+
+              <!-- Konfirmasi Password -->
+              <div class="form-group">
+                <label for="konfirmasi_password">Konfirmasi Password</label>
+                <div class="input-group">
+                  <i class="bi bi-lock-fill"></i>
+                  <input
+                    type="password"
+                    id="konfirmasi_password"
+                    name="konfirmasi_password"
+                    placeholder="Konfirmasi password"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="toggle-password"
+                    onclick="togglePassword('konfirmasi_password')"
+                  >
+                    <i class="bi bi-eye"></i>
+                  </button>
+                </div>
+                <div class="error-message" id="konfirmasi-password-error"></div>
+              </div>
+
+              <!-- Persetujuan Syarat -->
+              <div class="form-check">
+                <input type="checkbox" id="syarat" name="syarat" required />
+                <label for="syarat">
+                  Saya menyetujui <a href="#">Syarat & Ketentuan</a> yang
+                  berlaku
+                </label>
+                <div class="error-message" id="syarat-error"></div>
+              </div>
+
+              <!-- Tombol Submit -->
+              <button type="submit" class="btn-submit">Daftar Sekarang</button>
+
+              <!-- Pembatas -->
+              <div class="divider">
+                <span>atau</span>
+              </div>
+
+              <!-- Social Buttons -->
+              <div class="social-buttons">
+                <button type="button" class="btn-social btn-google">
+                  <i class="bi bi-google"></i>
+                  <span>Daftar dengan Google</span>
+                </button>
+                <button type="button" class="btn-social btn-facebook">
+                  <i class="bi bi-facebook"></i>
+                  <span>Daftar dengan Facebook</span>
+                </button>
+              </div>
+
+              <!-- Login Link -->
+              <div class="auth-link">
+                Sudah memiliki akun? <a href="login.html">Masuk sekarang</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Registrasi Section End -->
+
+    <!-- Footer -->
+    <footer class="auth-footer">
+      <div class="container">
+        <p>&copy; 2025 Flowers Shop. All rights reserved.</p>
+      </div>
+    </footer>
+    <form id="registrasi-form">
+      <!-- Input fields dengan id yang sesuai script -->
+      <input type="text" id="nama" name="nama" />
+      <input type="text" id="username" name="username" />
+      <input type="email" id="email" name="email" />
+      <!-- dll. -->
+    </form>
+    <script src="js/auth-fix.js"></script>
+    <script src="js/keranjang.js"></script>
+    <script src="js/perbaikan-keranjang.js"></script>
+    <script src="js/fix-keranjang-links.js"></script>
+    <script src="js/direct-checkout.js"></script>
+  </body>
+</html>

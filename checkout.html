@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout - Flowers Shop</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- My style -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/checkout.css" />
+  </head>
+  <body>
+    <!--navbar-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <!-- Logo dengan class tambahan untuk positioning -->
+        <a class="navbar-brand mobile-brand" href="index.html"
+          >Flowers <span>Shop</span></a
+        >
+
+        <!-- Wadah untuk icon mobile dan toggle -->
+        <div class="d-flex align-items-center">
+          <!-- Icon-icon mobile (hanya tampil di mobile) -->
+          <div class="mobile-icons d-flex d-lg-none align-items-center">
+            <a href="#" class="nav-link position-relative mx-1">
+              <i class="bi bi-search fs-5"></i>
+            </a>
+            <a href="#" class="nav-link position-relative mx-1">
+              <i class="bi bi-cart2 fs-5"></i>
+              <span class="badge-keranjang">0</span>
+            </a>
+            <a href="login.html" class="nav-link mx-1" id="mobile-login">
+              <i class="bi bi-person-circle fs-5"></i>
+            </a>
+          </div>
+
+          <!-- Toggle button -->
+          <button
+            class="navbar-toggler ms-2"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <!-- Navbar content yang collapse -->
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html#Beranda"
+                >Beranda</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#Produk">Produk</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#Tentang-Kami"
+                >Tentang Kami</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#Kontak">Kontak</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pembayaran</a>
+            </li>
+          </ul>
+
+          <!-- Icon-icon desktop (hanya tampil di desktop) -->
+          <div class="navbar-extra d-none d-lg-flex align-items-center">
+            <a href="#" class="nav-link position-relative mx-2">
+              <i class="bi bi-search fs-4"></i>
+            </a>
+            <a href="#" class="nav-link position-relative mx-2">
+              <i class="bi bi-cart2 fs-4"></i>
+              <span class="badge-keranjang">0</span>
+            </a>
+            <!-- Gunakan sistem logic untuk menampilkan tombol login ATAU profil dropdown -->
+            <div id="user-container">
+              <!-- Tombol login (tampil saat belum login) -->
+              <a href="login.html" class="nav-link ms-2" id="tombol-login">
+                <i class="bi bi-person-circle fs-4"></i>
+              </a>
+
+              <!-- Dropdown user (tampil saat sudah login) -->
+              <div class="dropdown ms-2" id="tombol-user" style="display: none">
+                <a href="#" class="nav-link dropdown-toggle" role="button">
+                  <i class="bi bi-person-fill fs-4"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <div class="dropdown-item fw-bold nama-user">Pengguna</div>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Profil Saya</a>
+                  <a class="dropdown-item" href="#">Pesanan Saya</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#" id="tombol-logout"
+                    >Logout</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!--navbar end-->
+
+    <!-- Checkout Section -->
+    <section class="checkout-section">
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="checkout-title">Checkout <span>Pesanan</span></h2>
+            <div class="checkout-progress">
+              <div class="progress-step active">
+                <div class="step-number">1</div>
+                <div class="step-text">Keranjang</div>
+              </div>
+              <div class="progress-step">
+                <div class="step-number">2</div>
+                <div class="step-text">Pengiriman</div>
+              </div>
+              <div class="progress-step">
+                <div class="step-number">3</div>
+                <div class="step-text">Pembayaran</div>
+              </div>
+              <div class="progress-step">
+                <div class="step-number">4</div>
+                <div class="step-text">Konfirmasi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Multi-step Checkout Form -->
+        <form id="checkoutForm" class="needs-validation" novalidate>
+          <!-- Step 1: Keranjang -->
+          <div class="checkout-step" id="step-1">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="checkout-card">
+                  <div class="card-header">
+                    <h5>Keranjang Belanja</h5>
+                  </div>
+                  <div class="card-body">
+                    <div
+                      id="keranjang-kosong"
+                      class="text-center py-5"
+                      style="display: none"
+                    >
+                      <i class="bi bi-cart-x fs-1 text-muted"></i>
+                      <p class="mt-3">Keranjang belanja Anda kosong</p>
+                      <a href="index.html#Produk" class="btn btn-primary mt-2"
+                        >Belanja Sekarang</a
+                      >
+                    </div>
+
+                    <div id="keranjang-items">
+                      <!-- Daftar item keranjang akan diisi oleh JavaScript -->
+                      <div class="table-responsive">
+                        <table class="table align-middle">
+                          <thead>
+                            <tr>
+                              <th>Produk</th>
+                              <th>Harga</th>
+                              <th>Jumlah</th>
+                              <th>Total</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody id="keranjang-body">
+                            <!-- Item keranjang akan ditampilkan di sini -->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4">
+                <div class="checkout-card">
+                  <div class="card-header">
+                    <h5>Ringkasan Belanja</h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="summary-item">
+                      <span
+                        >Total Harga (<span id="total-items">0</span>
+                        item)</span
+                      >
+                      <span id="subtotal">Rp 0</span>
+                    </div>
+                    <div class="summary-item">
+                      <span>Biaya Pengiriman</span>
+                      <span id="biaya-pengiriman">Rp 0</span>
+                    </div>
+                    <div class="summary-total">
+                      <span>Total Pembayaran</span>
+                      <span id="total-pembayaran">Rp 0</span>
+                    </div>
+                    <button
+                      type="button"
+                      id="btn-next-step1"
+                      class="btn-lanjutkan"
+                    >
+                      Lanjutkan ke Pengiriman
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Pengiriman -->
+          <div class="checkout-step" id="step-2" style="display: none">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="checkout-card">
+                  <div class="card-header">
+                    <h5>Alamat Pengiriman</h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="nama-penerima"
+                            >Nama Penerima
+                            <span class="text-danger">*</span></label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="nama-penerima"
+                            required
+                          />
+                          <div class="invalid-feedback">
+                            Nama penerima harus diisi
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="telepon-penerima"
+                            >Nomor Telepon
+                            <span class="text-danger">*</span></label
+                          >
+                          <input
+                            type="tel"
+                            class="form-control"
+                            id="telepon-penerima"
+                            required
+                          />
+                          <div class="invalid-feedback">
+                            Nomor telepon harus diisi
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <label for="provinsi"
+                        >Provinsi <span class="text-danger">*</span></label
+                      >
+                      <select class="form-select" id="provinsi" required>
+                        <option value="">Pilih provinsi</option>
+                        <option value="Kalimantan Timur">
+                          Kalimantan Timur
+                        </option>
+                      </select>
+                      <div class="invalid-feedback">Provinsi harus dipilih</div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <label for="kota"
+                        >Kota/Kabupaten
+                        <span class="text-danger">*</span></label
+                      >
+                      <select class="form-select" id="kota" required>
+                        <option value="">Pilih kota/kabupaten</option>
+                        <option value="Samarinda Seberang">
+                          Samarinda Seberang
+                        </option>
+                        <option value="Samarinda Kota">Samarinda Kota</option>
+                        <option value="Tenggarong">Tenggarong</option>
+                        <option value="Luar Kota">Luar Kota</option>
+                      </select>
+                      <div class="invalid-feedback">
+                        Kota/kabupaten harus dipilih
+                      </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <label for="kecamatan"
+                        >Kecamatan <span class="text-danger">*</span></label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="kecamatan"
+                        required
+                      />
+                      <div class="invalid-feedback">Kecamatan harus diisi</div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <label for="alamat-lengkap"
+                        >Alamat Lengkap
+                        <span class="text-danger">*</span></label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="alamat-lengkap"
+                        rows="3"
+                        required
+                      ></textarea>
+                      <div class="invalid-feedback">
+                        Alamat lengkap harus diisi
+                      </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <label for="catatan">Catatan (Opsional)</label>
+                      <textarea
+                        class="form-control"
+                        id="catatan"
+                        rows="2"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="checkout-card mt-4">
+                  <div class="card-header">
+                    <h5>Metode Pengiriman</h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="form-check shipping-option mb-3">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="shipping"
+                        id="shipping-standard"
+                        value="standard"
+                        checked
+                      />
+                      <label class="form-check-label" for="shipping-standard">
+                        <div class="shipping-info">
+                          <div class="shipping-name">Pengiriman Standar</div>
+                          <div
+                            class="shipping-price"
+                            id="shipping-standard-price"
+                          >
+                            Rp 15.000
+                          </div>
+                        </div>
+                        <div class="shipping-desc">
+                          Estimasi 1-2 hari (tergantung wilayah)
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4">
+                <div class="checkout-card">
+                  <div class="card-header">
+                    <h5>Ringkasan Belanja</h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="summary-item">
+                      <span
+                        >Total Harga (<span id="total-items-step2">0</span>
+                        item)</span
+                      >
+                      <span id="subtotal-step2">Rp 0</span>
+                    </div>
+                    <div class="summary-item">
+                      <span>Biaya Pengiriman</span>
+                      <span id="biaya-pengiriman-step2">Rp 0</span>
+                    </div>
+                    <div class="summary-total">
+                      <span>Total Pembayaran</span>
+                      <span id="total-pembayaran-step2">Rp 0</span>
+                    </div>
+                    <div class="d-flex gap-2 mt-3">
+                      <button
+                        type="button"
+                        id="btn-prev-step2"
+                        class="btn-kembali"
+                      >
+                        Kembali
+                      </button>
+                      <button
+                        type="button"
+                        id="btn-next-step2"
+                        class="btn-lanjutkan"
+                      >
+                        Lanjutkan ke Pembayaran
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Pembayaran -->
+          <div class="checkout-step" id="step-3" style="display: none">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="checkout-card">
+                  <div class="card-header">
+                    <h5>Metode Pembayaran</h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="payment-methods">
+                      <div class="form-check payment-option mb-3">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="payment"
+                          id="payment-transfer"
+                          value="transfer"
+                          checked
+                        />
+                        <label class="form-check-label" for="payment-transfer">
+                          <div class="payment-info">
+                            <i class="bi bi-bank fs-4"></i>
+                            <div>
+                              <div class="payment-name">Transfer Bank</div>
+                              <div class="payment-desc">
+                                BCA, BRI, Mandiri, BNI
+                              </div>
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+
+                      <div class="form-check payment-option mb-3">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="payment"
+                          id="payment-qris"
+                          value="qris"
+                        />
+                        <label class="form-check-label" for="payment-qris">
+                          <div class="payment-info">
+                            <i class="bi bi-qr-code fs-4"></i>
+                            <div>
+                              <div class="payment-name">QRIS</div>
+                              <div class="payment-desc">
+                                GoPay, OVO, Dana, ShopeePay, dan e-wallet
+                                lainnya
+                              </div>
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+
+                    <!-- Detail Pembayaran Transfer Bank -->
+                    <div id="detail-transfer" class="payment-detail">
+                      <div class="bank-accounts">
+                        <h6>Pilih Bank</h6>
+                        <div class="form-check bank-option mb-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="bank"
+                            id="bank-bca"
+                            value="bca"
+                            checked
+                          />
+                          <label class="form-check-label" for="bank-bca">
+                            <div class="bank-info">
+                              <div class="bank-name">Bank BCA</div>
+                              <div class="bank-number">1234567890</div>
+                              <div class="bank-account">a.n. Flowers Shop</div>
+                            </div>
+                          </label>
+                        </div>
+
+                        <div class="form-check bank-option mb-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="bank"
+                            id="bank-bri"
+                            value="bri"
+                          />
+                          <label class="form-check-label" for="bank-bri">
+                            <div class="bank-info">
+                              <div class="bank-name">Bank BRI</div>
+                              <div class="bank-number">9876543210</div>
+                              <div class="bank-account">a.n. Flowers Shop</div>
+                            </div>
+                          </label>
+                        </div>
+
+                        <div class="form-check bank-option mb-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="bank"
+                            id="bank-mandiri"
+                            value="mandiri"
+                          />
+                          <label class="form-check-label" for="bank-mandiri">
+                            <div class="bank-info">
+                              <div class="bank-name">Bank Mandiri</div>
+                              <div class="bank-number">1357924680</div>
+                              <div class="bank-account">a.n. Flowers Shop</div>
+                            </div>
+                          </label>
+                        </div>
+
+                        <div class="form-check bank-option mb-2">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="bank"
+                            id="bank-bni"
+                            value="bni"
+                          />
+                          <label class="form-check-label" for="bank-bni">
+                            <div class="bank-info">
+                              <div class="bank-name">Bank BNI</div>
+                              <div class="bank-number">2468013579</div>
+                              <div class="bank-account">a.n. Flowers Shop</div>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="transfer-instruction mt-4">
+                        <h6>Cara Pembayaran:</h6>
+                        <ol>
+                          <li>
+                            Transfer sesuai nominal total pembayaran ke rekening
+                            yang dipilih
+                          </li>
+                          <li>Simpan bukti pembayaran</li>
+                          <li>
+                            Upload bukti pembayaran pada halaman konfirmasi
+                          </li>
+                          <li>
+                            Pesanan akan diproses setelah pembayaran
+                            dikonfirmasi
+                          </li>
+                        </ol>
+                      </div>
+                    </div>
+
+                    <!-- Detail Pembayaran QRIS -->
+                    <div
+                      id="detail-qris"
+                      class="payment-detail"
+                      style="display: none"
+                    >
+                      <div class="qris-container">
+                        <h6>Scan QRIS</h6>
+                        <div class="qris-image">
+                          <img
+                            src="img/qris-placeholder.png"
+                            alt="QRIS Code"
+                            class="img-fluid"
+                          />
+                        </div>
+                        <div class="qris-instruction mt-3">
+                          <h6>Cara Pembayaran:</h6>
+                          <ol>
+                            <li>
+                              Buka aplikasi e-wallet pilihan Anda (GoPay, OVO,
+                              Dana, dll)
+                            </li>
+                            <li>Scan kode QRIS di atas</li>
+                            <li>Bayar sesuai nominal total pembayaran</li>
+                            <li>Simpan bukti pembayaran</li>
+                            <li>
+                              Upload bukti pembayaran pada halaman konfirmasi
+                            </li>
+                            <li>
+                              Pesanan akan diproses setelah pembayaran
+                              dikonfirmasi
+                            </li>
+                          </ol>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4">
+                <div class="checkout-card">
+                  <div class="card-header">
+                    <h5>Ringkasan Belanja</h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="summary-item">
+                      <span
+                        >Total Harga (<span id="total-items-step3">0</span>
+                        item)</span
+                      >
+                      <span id="subtotal-step3">Rp 0</span>
+                    </div>
+                    <div class="summary-item">
+                      <span>Biaya Pengiriman</span>
+                      <span id="biaya-pengiriman-step3">Rp 0</span>
+                    </div>
+                    <div class="summary-total">
+                      <span>Total Pembayaran</span>
+                      <span id="total-pembayaran-step3">Rp 0</span>
+                    </div>
+                    <div class="d-flex gap-2 mt-3">
+                      <button
+                        type="button"
+                        id="btn-prev-step3"
+                        class="btn-kembali"
+                      >
+                        Kembali
+                      </button>
+                      <button
+                        type="button"
+                        id="btn-next-step3"
+                        class="btn-lanjutkan"
+                      >
+                        Lanjutkan ke Konfirmasi
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: Konfirmasi -->
+          <div class="checkout-step" id="step-4" style="display: none">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="checkout-card">
+                  <div class="card-header">
+                    <h5>Konfirmasi Pesanan</h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="confirmation-section">
+                      <h6>Informasi Pengiriman</h6>
+                      <div class="confirmation-info" id="konfirmasi-pengiriman">
+                        <!-- Informasi pengiriman akan ditampilkan di sini -->
+                      </div>
+                    </div>
+
+                    <div class="confirmation-section mt-4">
+                      <h6>Metode Pembayaran</h6>
+                      <div class="confirmation-info" id="konfirmasi-pembayaran">
+                        <!-- Informasi pembayaran akan ditampilkan di sini -->
+                      </div>
+                    </div>
+
+                    <div class="confirmation-section mt-4">
+                      <h6>Produk yang Dibeli</h6>
+                      <div id="konfirmasi-produk">
+                        <!-- Daftar produk akan ditampilkan di sini -->
+                      </div>
+                    </div>
+
+                    <div class="upload-section mt-4">
+                      <h6>Upload Bukti Pembayaran</h6>
+                      <p class="small text-muted">
+                        Unggah bukti pembayaran Anda untuk mempercepat proses
+                        verifikasi
+                      </p>
+                      <div class="form-group">
+                        <label for="bukti-pembayaran" class="upload-area">
+                          <i class="bi bi-cloud-arrow-up fs-3"></i>
+                          <div class="upload-text">
+                            <span>Klik atau seret file di sini</span>
+                            <small
+                              >Ukuran maksimal file 2MB (JPG, JPEG, PNG)</small
+                            >
+                          </div>
+                          <input
+                            type="file"
+                            id="bukti-pembayaran"
+                            class="form-control"
+                            accept="image/png, image/jpeg"
+                            style="display: none"
+                          />
+                        </label>
+
+                        <div
+                          id="preview-bukti"
+                          class="preview-bukti"
+                          style="display: none"
+                        >
+                          <img
+                            id="preview-image"
+                            src="#"
+                            alt="Preview bukti pembayaran"
+                          />
+                          <button
+                            type="button"
+                            id="btn-remove-preview"
+                            class="btn-remove-preview"
+                          >
+                            <i class="bi bi-x-circle"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4">
+                <div class="checkout-card">
+                  <div class="card-header">
+                    <h5>Ringkasan Belanja</h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="summary-item">
+                      <span
+                        >Total Harga (<span id="total-items-step4">0</span>
+                        item)</span
+                      >
+                      <span id="subtotal-step4">Rp 0</span>
+                    </div>
+                    <div class="summary-item">
+                      <span>Biaya Pengiriman</span>
+                      <span id="biaya-pengiriman-step4">Rp 0</span>
+                    </div>
+                    <div class="summary-total">
+                      <span>Total Pembayaran</span>
+                      <span id="total-pembayaran-step4">Rp 0</span>
+                    </div>
+                    <div class="d-flex gap-2 mt-3">
+                      <button
+                        type="button"
+                        id="btn-prev-step4"
+                        class="btn-kembali"
+                      >
+                        Kembali
+                      </button>
+                      <button
+                        type="submit"
+                        id="btn-submit-order"
+                        class="btn-lanjutkan"
+                      >
+                        Konfirmasi & Selesai
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pesanan Berhasil Modal -->
+          <div
+            class="modal fade"
+            id="pesananBerhasilModal"
+            tabindex="-1"
+            aria-labelledby="pesananBerhasilModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-body text-center py-4">
+                  <div class="success-icon">
+                    <i class="bi bi-check-circle"></i>
+                  </div>
+                  <h4 class="mt-3">Pesanan Berhasil!</h4>
+                  <p>Terima kasih telah berbelanja di Flowers Shop</p>
+                  <div class="order-info mb-3">
+                    <div>Nomor Pesanan:</div>
+                    <div class="order-number" id="nomor-pesanan"></div>
+                  </div>
+                  <p class="text-muted small mb-4">
+                    Kami telah mengirimkan detail pesanan ke email Anda.<br />
+                    Status pesanan dapat dilihat di halaman "Pesanan Saya".
+                  </p>
+                  <div class="d-flex justify-content-center gap-3">
+                    <a href="index.html" class="btn btn-secondary"
+                      >Kembali ke Beranda</a
+                    >
+                    <a href="#" class="btn btn-primary">Lihat Pesanan Saya</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Script untuk menangani klik di luar sidebar -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Dapatkan elemen sidebar
+        const navbar = document.querySelector(".navbar-collapse");
+
+        // Dapatkan tombol toggle
+        const toggleButton = document.querySelector(".navbar-toggler");
+
+        // Tambahkan event listener pada dokumen
+        document.addEventListener("click", function (event) {
+          // Periksa apakah sidebar sedang terbuka
+          if (navbar && navbar.classList.contains("show")) {
+            // Periksa apakah klik terjadi di luar sidebar dan bukan pada tombol toggle
+            if (
+              !navbar.contains(event.target) &&
+              !toggleButton.contains(event.target)
+            ) {
+              // Tutup sidebar dengan "mengklik" tombol toggle
+              toggleButton.click();
+            }
+          }
+        });
+
+        // Script untuk membuat navbar sticky dan mengubah warna saat scroll
+        window.addEventListener("scroll", function () {
+          const navbar = document.querySelector(".navbar");
+          navbar.classList.toggle("scrolled", window.scrollY > 0);
+        });
+      });
+    </script>
+    <script src="js/checkout.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/keranjang.js"></script>
+    <script src="js/perbaikan-keranjang.js"></script>
+    <script src="js/fix-keranjang-links.js"></script>
+    <script src="js/checkout-direct-patch.js"></script>
+    <script src="js/direct-checkout.js"></script>
+  </body>
+</html>

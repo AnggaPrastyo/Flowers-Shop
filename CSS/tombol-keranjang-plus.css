@@ -1,0 +1,113 @@
+/* CSS untuk Tombol Keranjang dan Pesan Sekarang */
+
+/* Container untuk kedua tombol */
+.product-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Gaya umum untuk kedua tombol */
+.btn-product {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+}
+
+/* Tombol Tambah ke Keranjang */
+.btn-cart {
+  background-color: white;
+  color: #89aaaf;
+  border: 1px solid #89aaaf;
+  flex: 0 0 50px; /* Lebar tetap */
+}
+
+.btn-cart:hover {
+  background-color: #f3c9b1;
+  color: #36486b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-cart i {
+  font-size: 1.2rem;
+}
+
+/* Tombol Pesan Sekarang */
+.btn-order {
+  background-color: #ffe3d1;
+  color: #36486b;
+  flex: 1;
+}
+
+.btn-order:hover {
+  background-color: #f3c9b1;
+  color: #36486b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Notifikasi */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background-color: #d4edda;
+  color: #155724;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s ease;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notification i {
+  font-size: 1.2rem;
+}
+
+.notification.success {
+  background-color: #d4edda;
+  color: #155724;
+  border-left: 4px solid #28a745;
+}
+
+.notification.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-left: 4px solid #dc3545;
+}
+
+/* Animasi untuk tombol */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn-product:active {
+  animation: pulse 0.3s ease;
+}
