@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kategori Produk - Flowers Shop</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="css/tombol-keranjang-plus.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- My style -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/kategori.css" />
+  </head>
+  <body>
+    <!--navbar-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <!-- Logo dengan class tambahan untuk positioning -->
+        <a class="navbar-brand mobile-brand" href="index.html"
+          >Flowers <span>Shop</span></a
+        >
+
+        <!-- Wadah untuk icon mobile dan toggle -->
+        <div class="d-flex align-items-center">
+          <!-- Icon-icon mobile (hanya tampil di mobile) -->
+          <div class="mobile-icons d-flex d-lg-none align-items-center">
+            <a href="#" class="nav-link position-relative mx-1">
+              <i class="bi bi-search fs-5"></i>
+            </a>
+            <a href="keranjang.html" class="nav-link position-relative mx-1">
+              <i class="bi bi-cart2 fs-5"></i>
+              <span class="badge-keranjang">0</span>
+            </a>
+            <a href="login.html" class="nav-link mx-1" id="mobile-login">
+              <i class="bi bi-person-circle fs-5"></i>
+            </a>
+          </div>
+
+          <!-- Toggle button -->
+          <button
+            class="navbar-toggler ms-2"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <!-- Navbar content yang collapse -->
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html#Beranda"
+                >Beranda</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#Produk">Produk</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="kategori.html">Kategori</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#Tentang-Kami"
+                >Tentang Kami</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#Kontak">Kontak</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pembayaran</a>
+            </li>
+          </ul>
+
+          <!-- Icon-icon desktop (hanya tampil di desktop) -->
+          <div class="navbar-extra d-none d-lg-flex align-items-center">
+            <a href="#" class="nav-link position-relative mx-2">
+              <i class="bi bi-search fs-4"></i>
+            </a>
+            <a href="keranjang.html" class="nav-link position-relative mx-2">
+              <i class="bi bi-cart2 fs-4"></i>
+              <span class="badge-keranjang">0</span>
+            </a>
+            <!-- Gunakan sistem logic untuk menampilkan tombol login ATAU profil dropdown -->
+            <div id="user-container">
+              <!-- Tombol login (tampil saat belum login) -->
+              <a href="login.html" class="nav-link ms-2" id="tombol-login">
+                <i class="bi bi-person-circle fs-4"></i>
+              </a>
+
+              <!-- Dropdown user (tampil saat sudah login) -->
+              <div class="dropdown ms-2" id="tombol-user" style="display: none">
+                <a href="#" class="nav-link dropdown-toggle" role="button">
+                  <i class="bi bi-person-fill fs-4"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <div class="dropdown-item fw-bold nama-user">Pengguna</div>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Profil Saya</a>
+                  <a class="dropdown-item" href="#">Pesanan Saya</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#" id="tombol-logout"
+                    >Logout</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!--navbar end-->
+
+    <!-- Header Section -->
+    <section class="category-header">
+      <div class="container">
+        <h1>Kategori <span>Produk</span></h1>
+        <p>Pilih kategori produk bunga sesuai kebutuhan Anda</p>
+      </div>
+    </section>
+
+    <!-- Category Section -->
+    <section class="category-section">
+      <div class="container">
+        <div class="category-nav">
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link active" href="#" data-category="all"
+                >Semua Kategori</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-category="bunga_potong"
+                >Bunga Potong</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-category="bunga_pot"
+                >Bunga Pot</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-category="pot_gantung"
+                >Pot Gantung</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-category="pot_rotan"
+                >Pot Rotan</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-category="pot_biasa"
+                >Pot Biasa</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-category="pot_kaki_besi"
+                >Pot Kaki Besi</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-category="aksesoris"
+                >Aksesoris</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-category="pot_kayu">Pot Kayu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-category="pot_keramik"
+                >Pot Keramik</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="category-filter">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="sort-by">Urutkan</label>
+                <select id="sort-by" class="form-select">
+                  <option value="newest">Terbaru</option>
+                  <option value="price-asc">Harga: Rendah ke Tinggi</option>
+                  <option value="price-desc">Harga: Tinggi ke Rendah</option>
+                  <option value="name-asc">Nama: A-Z</option>
+                  <option value="name-desc">Nama: Z-A</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="price-range">Rentang Harga</label>
+                <select id="price-range" class="form-select">
+                  <option value="all">Semua Harga</option>
+                  <option value="0-100000">Dibawah Rp 100.000</option>
+                  <option value="100000-200000">Rp 100.000 - Rp 200.000</option>
+                  <option value="200000-300000">Rp 200.000 - Rp 300.000</option>
+                  <option value="300000-up">Diatas Rp 300.000</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="search-product">Cari Produk</label>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="search-product"
+                    class="form-control"
+                    placeholder="Nama produk..."
+                  />
+                  <button class="btn btn-primary" type="button">
+                    <i class="bi bi-search"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-container">
+          <div class="row" id="product-list">
+            <!-- Produk akan ditampilkan disini dengan JavaScript -->
+
+            <!-- Contoh produk, akan diganti dengan data dinamis -->
+            <div
+              class="col-6 col-md-4 col-lg-3 mb-4 product-item"
+              data-category="bunga_potong"
+            >
+              <div class="product-card">
+                <a href="produk-detail.html?id=1" class="product-image">
+                  <img src="img/Produk/bunga.jpeg" alt="Bunga Mawar" />
+                </a>
+                <div class="product-details">
+                  <h3 class="product-title">Bunga <span>Mawar</span></h3>
+                  <div class="product-price">Rp 100.000</div>
+                  <div class="product-buttons">
+                    <button
+                      class="btn-product btn-cart"
+                      data-id="1"
+                      data-nama="Bunga Mawar"
+                      data-harga="100000"
+                    >
+                      <i class="bi bi-cart-plus"></i>
+                    </button>
+                    <button
+                      class="btn-product btn-order"
+                      data-id="1"
+                      data-nama="Bunga Mawar"
+                      data-harga="100000"
+                    >
+                      Pesan Sekarang
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-6 col-md-4 col-lg-3 mb-4 product-item"
+              data-category="bunga_potong"
+            >
+              <div class="product-card">
+                <a href="produk-detail.html?id=2" class="product-image">
+                  <img src="img/Produk/bunga4.jpeg" alt="Bunga Lily" />
+                </a>
+                <div class="product-details">
+                  <h3 class="product-title">Bunga <span>Lily</span></h3>
+                  <div class="product-price">Rp 120.000</div>
+                  <div class="product-buttons">
+                    <button
+                      class="btn-product btn-cart"
+                      data-id="2"
+                      data-nama="Bunga Lily"
+                      data-harga="120000"
+                    >
+                      <i class="bi bi-cart-plus"></i>
+                    </button>
+                    <button
+                      class="btn-product btn-order"
+                      data-id="2"
+                      data-nama="Bunga Lily"
+                      data-harga="120000"
+                    >
+                      Pesan Sekarang
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-6 col-md-4 col-lg-3 mb-4 product-item"
+              data-category="bunga_potong"
+            >
+              <div class="product-card">
+                <a href="produk-detail.html?id=3" class="product-image">
+                  <img src="img/Produk/bunga5.jpeg" alt="Bunga Matahari" />
+                </a>
+                <div class="product-details">
+                  <h3 class="product-title">Bunga <span>Matahari</span></h3>
+                  <div class="product-price">Rp 95.000</div>
+                  <div class="product-buttons">
+                    <button
+                      class="btn-product btn-cart"
+                      data-id="3"
+                      data-nama="Bunga Matahari"
+                      data-harga="95000"
+                    >
+                      <i class="bi bi-cart-plus"></i>
+                    </button>
+                    <button
+                      class="btn-product btn-order"
+                      data-id="3"
+                      data-nama="Bunga Matahari"
+                      data-harga="95000"
+                    >
+                      Pesan Sekarang
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-6 col-md-4 col-lg-3 mb-4 product-item"
+              data-category="bunga_pot"
+            >
+              <div class="product-card">
+                <a href="produk-detail.html?id=5" class="product-image">
+                  <img src="img/Produk/Bunga2.jpg" alt="Bunga Anggrek" />
+                </a>
+                <div class="product-details">
+                  <h3 class="product-title">Bunga <span>Anggrek</span></h3>
+                  <div class="product-price">Rp 200.000</div>
+                  <div class="product-buttons">
+                    <button
+                      class="btn-product btn-cart"
+                      data-id="5"
+                      data-nama="Bunga Anggrek"
+                      data-harga="200000"
+                    >
+                      <i class="bi bi-cart-plus"></i>
+                    </button>
+                    <button
+                      class="btn-product btn-order"
+                      data-id="5"
+                      data-nama="Bunga Anggrek"
+                      data-harga="200000"
+                    >
+                      Pesan Sekarang
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-6 col-md-4 col-lg-3 mb-4 product-item"
+              data-category="pot_gantung"
+            >
+              <div class="product-card">
+                <a href="produk-detail.html?id=7" class="product-image">
+                  <img
+                    src="img/Produk/pot_gantung.jpg"
+                    alt="Pot Gantung Rotan"
+                  />
+                </a>
+                <div class="product-details">
+                  <h3 class="product-title">Pot <span>Gantung Rotan</span></h3>
+                  <div class="product-price">Rp 75.000</div>
+                  <div class="product-buttons">
+                    <button
+                      class="btn-product btn-cart"
+                      data-id="7"
+                      data-nama="Pot Gantung Rotan"
+                      data-harga="75000"
+                    >
+                      <i class="bi bi-cart-plus"></i>
+                    </button>
+                    <button
+                      class="btn-product btn-order"
+                      data-id="7"
+                      data-nama="Pot Gantung Rotan"
+                      data-harga="75000"
+                    >
+                      Pesan Sekarang
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-6 col-md-4 col-lg-3 mb-4 product-item"
+              data-category="pot_rotan"
+            >
+              <div class="product-card">
+                <a href="produk-detail.html?id=8" class="product-image">
+                  <img src="img/Produk/pot_rotan.jpg" alt="Pot Rotan Klasik" />
+                </a>
+                <div class="product-details">
+                  <h3 class="product-title">Pot <span>Rotan Klasik</span></h3>
+                  <div class="product-price">Rp 125.000</div>
+                  <div class="product-buttons">
+                    <button
+                      class="btn-product btn-cart"
+                      data-id="8"
+                      data-nama="Pot Rotan Klasik"
+                      data-harga="125000"
+                    >
+                      <i class="bi bi-cart-plus"></i>
+                    </button>
+                    <button
+                      class="btn-product btn-order"
+                      data-id="8"
+                      data-nama="Pot Rotan Klasik"
+                      data-harga="125000"
+                    >
+                      Pesan Sekarang
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-6 col-md-4 col-lg-3 mb-4 product-item"
+              data-category="pot_keramik"
+            >
+              <div class="product-card">
+                <a href="produk-detail.html?id=9" class="product-image">
+                  <img
+                    src="img/Produk/pot_keramik.jpg"
+                    alt="Pot Keramik Putih"
+                  />
+                </a>
+                <div class="product-details">
+                  <h3 class="product-title">Pot <span>Keramik Putih</span></h3>
+                  <div class="product-price">Rp 150.000</div>
+                  <div class="product-buttons">
+                    <button
+                      class="btn-product btn-cart"
+                      data-id="9"
+                      data-nama="Pot Keramik Putih"
+                      data-harga="150000"
+                    >
+                      <i class="bi bi-cart-plus"></i>
+                    </button>
+                    <button
+                      class="btn-product btn-order"
+                      data-id="9"
+                      data-nama="Pot Keramik Putih"
+                      data-harga="150000"
+                    >
+                      Pesan Sekarang
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="col-6 col-md-4 col-lg-3 mb-4 product-item"
+              data-category="pot_kayu"
+            >
+              <div class="product-card">
+                <a href="produk-detail.html?id=10" class="product-image">
+                  <img src="img/Produk/pot_kayu.jpg" alt="Pot Kayu Jati" />
+                </a>
+                <div class="product-details">
+                  <h3 class="product-title">Pot <span>Kayu Jati</span></h3>
+                  <div class="product-price">Rp 185.000</div>
+                  <div class="product-buttons">
+                    <button
+                      class="btn-product btn-cart"
+                      data-id="10"
+                      data-nama="Pot Kayu Jati"
+                      data-harga="185000"
+                    >
+                      <i class="bi bi-cart-plus"></i>
+                    </button>
+                    <button
+                      class="btn-product btn-order"
+                      data-id="10"
+                      data-nama="Pot Kayu Jati"
+                      data-harga="185000"
+                    >
+                      Pesan Sekarang
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-container">
+          <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled">
+                <a
+                  class="page-link"
+                  href="#"
+                  tabindex="-1"
+                  aria-disabled="true"
+                >
+                  <i class="bi bi-chevron-left"></i>
+                </a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">
+                  <i class="bi bi-chevron-right"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <script src="js/script.js"></script>
+    <script src="js/keranjang.js"></script>
+    <script src="js/perbaikan-keranjang.js"></script>
+    <script src="js/fix-keranjang-links.js"></script>
+    <script src="js/tombol-keranjang-plus-fixed.js"></script>
+    <script src="js/direct-checkout.js"></script>
+    <script src="js/kategori.js"></script>
+  </body>
+</html>
