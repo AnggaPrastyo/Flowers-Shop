@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Debug File Checker</title>
+    <style>
+      body {
+        font-family: Arial;
+        margin: 20px;
+        background: #f5f5f5;
+      }
+      .container {
+        max-width: 800px;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+      }
+      .debug-section {
+        border: 1px solid #ddd;
+        margin: 10px 0;
+        padding: 15px;
+        border-radius: 5px;
+      }
+      .success {
+        background: #e8f5e9;
+        border-color: #4caf50;
+      }
+      .error {
+        background: #ffebee;
+        border-color: #f44336;
+      }
+      .warning {
+        background: #fff3e0;
+        border-color: #ff9800;
+      }
+      .btn {
+        padding: 8px 16px;
+        margin: 5px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .btn-primary {
+        background: #007bff;
+        color: white;
+      }
+      .btn-success {
+        background: #28a745;
+        color: white;
+      }
+      .btn-warning {
+        background: #ffc107;
+        color: black;
+      }
+      pre {
+        background: #f8f9fa;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+      h3 {
+        margin-top: 0;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔧 Debug File Checker - Flowers Shop API</h1>
+      <p>Tool untuk mengecek masalah pada API endpoints dan file structure.</p>
+
+      <div class="debug-section">
+        <h3>📁 1. File Structure Check</h3>
+        <button class="btn btn-primary" onclick="checkFileStructure()">
+          Check File Structure
+        </button>
+        <div id="fileStructureResult"></div>
+      </div>
+
+      <div class="debug-section">
+        <h3>🔗 2. Path Resolution Test</h3>
+        <button class="btn btn-primary" onclick="checkPaths()">
+          Test Path Resolution
+        </button>
+        <div id="pathResult"></div>
+      </div>
+
+      <div class="debug-section">
+        <h3>📋 3. Auth Class Test</h3>
+        <button class="btn btn-primary" onclick="checkAuthClass()">
+          Test Auth Class Loading
+        </button>
+        <div id="authResult"></div>
+      </div>
+
+      <div class="debug-section">
+        <h3>🧪 4. Database Connection Test</h3>
+        <button class="btn btn-primary" onclick="checkDatabase()">
+          Test Database Connection
+        </button>
+        <div id="databaseResult"></div>
+      </div>
+
+      <div class="debug-section">
+        <h3>🚀 5. Quick Fix Generator</h3>
+        <button class="btn btn-success" onclick="generateFix()">
+          Generate Fix Code
+        </button>
+        <div id="fixResult"></div>
+      </div>
+    </div>
+
+    <script>
+      const API_BASE = "http://localhost/flowers_shop/api/";
+
+      function checkFileStructure() {
+        const result = document.getElementById("fileStructureResult");
+        result.innerHTML = `
+                <div class="warning">
+                    <h4>Expected File Structure:</h4>
+                    <pre>flowers_shop/
+├── php/
+│   ├── database.php ✅
+│   └── classes/
+│       └── Auth.php ✅ (Must exist)
+└── api/
+    ├── login.php ✅
+    ├── register.php ✅
+    └── logout.php ✅</pre>
+                    
+                    <h4>🔍 Manual Check Required:</h4>
+                    <ol>
+                        <li>Open VS Code Explorer</li>
+                        <li>Verify <code>php/classes/Auth.php</code> exists</li>
+                        <li>Verify <code>php/database.php</code> exists</li>
+                        <li>Check if file names are EXACTLY correct (case-sensitive)</li>
+                    </ol>
+                </div>
+            `;
+      }
+
+      function checkPaths() {
+        const result = document.getElementById("pathResult");
+        result.innerHTML = `
+                <div class="warning">
+                    <h4>🔍 Path Analysis:</h4>
+                    <p><strong>Current Path:</strong> <code>../php/classes/Auth.php</code></p>
+                    <p><strong>From:</strong> <code>api/login.php</code></p>
+                    <p><strong>Should resolve to:</strong> <code>flowers_shop/php/classes/Auth.php</code></p>
+                    
+                    <h4>Common Path Issues:</h4>
+                    <ul>
+                        <li>❌ Case sensitivity (Auth.php vs auth.php)</li>
+                        <li>❌ Extra spaces in filename</li>
+                        <li>❌ File doesn't exist at expected location</li>
+                        <li>❌ Permission issues</li>
+                    </ul>
+                    
+                    <h4>🧪 Test This:</h4>
+                    <p>Create a simple test file: <code>api/test_path.php</code></p>
+                    <pre>&lt;?php
+echo "Testing path resolution...\\n";
+if (file_exists('../php/classes/Auth.php')) {
+    echo "✅ Auth.php found!";
+} else {
+    echo "❌ Auth.php NOT found!";
+    echo "\\nChecking alternatives:";
+    if (file_exists('../php/classes/auth.php')) echo "\\n- Found: auth.php (lowercase)";
+    if (file_exists('../classes/Auth.php')) echo "\\n- Found: ../classes/Auth.php";
+    if (file_exists('../../php/classes/Auth.php')) echo "\\n- Found: ../../php/classes/Auth.php";
+}
+?&gt;</pre>
+                </div>
+            `;
+      }
+
+      function checkAuthClass() {
+        const result = document.getElementById("authResult");
+        result.innerHTML = `
+                <div class="warning">
+                    <h4>🔍 Auth Class Loading Test</h4>
+                    <p>Create this test file: <code>api/test_auth.php</code></p>
+                    <pre>&lt;?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+echo "Testing Auth class loading...\\n\\n";
+
+// Test 1: File exists
+if (file_exists('../php/classes/Auth.php')) {
+    echo "✅ Auth.php file exists\\n";
+} else {
+    echo "❌ Auth.php file NOT found\\n";
+    exit;
+}
+
+// Test 2: File readable
+if (is_readable('../php/classes/Auth.php')) {
+    echo "✅ Auth.php is readable\\n";
+} else {
+    echo "❌ Auth.php is NOT readable\\n";
+    exit;
+}
+
+// Test 3: Try to include
+try {
+    require_once '../php/classes/Auth.php';
+    echo "✅ Auth.php loaded successfully\\n";
+} catch (Exception $e) {
+    echo "❌ Error loading Auth.php: " . $e->getMessage() . "\\n";
+    exit;
+}
+
+// Test 4: Class exists
+if (class_exists('Auth')) {
+    echo "✅ Auth class is available\\n";
+} else {
+    echo "❌ Auth class NOT found\\n";
+    exit;
+}
+
+echo "\\n🎉 All tests passed!";
+?&gt;</pre>
+                </div>
+            `;
+      }
+
+      function checkDatabase() {
+        const result = document.getElementById("databaseResult");
+        result.innerHTML = `
+                <div class="warning">
+                    <h4>🔍 Database Connection Test</h4>
+                    <p>Create this test file: <code>api/test_db.php</code></p>
+                    <pre>&lt;?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+echo "Testing database connection...\\n\\n";
+
+// Test 1: Database file exists
+if (file_exists('../php/database.php')) {
+    echo "✅ database.php exists\\n";
+    try {
+        require_once '../php/database.php';
+        echo "✅ database.php loaded\\n";
+    } catch (Exception $e) {
+        echo "❌ Error loading database.php: " . $e->getMessage() . "\\n";
+    }
+} else {
+    echo "❌ database.php NOT found\\n";
+}
+
+// Test 2: MySQL connection
+try {
+    $host = 'localhost';
+    $username = 'root';
+    $password = '';
+    $database = 'flowers_shop';
+    
+    $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+    echo "✅ Database connection successful\\n";
+} catch (PDOException $e) {
+    echo "❌ Database connection failed: " . $e->getMessage() . "\\n";
+}
+?&gt;</pre>
+                </div>
+            `;
+      }
+
+      function generateFix() {
+        const result = document.getElementById("fixResult");
+        result.innerHTML = `
+                <div class="success">
+                    <h4>🚀 Quick Fix Solutions</h4>
+                    
+                    <h5>Fix 1: Absolute Path (Recommended)</h5>
+                    <p>Replace the require_once line in all API files:</p>
+                    <pre>// ❌ Old relative path
+require_once '../php/classes/Auth.php';
+
+// ✅ New absolute path
+require_once $_SERVER['DOCUMENT_ROOT'] . '/flowers_shop/php/classes/Auth.php';</pre>
+
+                    <h5>Fix 2: Path with dirname()</h5>
+                    <pre>// ✅ Alternative path resolution
+require_once dirname(__DIR__) . '/php/classes/Auth.php';</pre>
+
+                    <h5>Fix 3: Add path to include path</h5>
+                    <pre>// ✅ Add to include path first
+set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__DIR__) . '/php/classes/');
+require_once 'Auth.php';</pre>
+
+                    <h5>Fix 4: Debug Path Resolution</h5>
+                    <pre>// ✅ Debug current working directory
+echo "Current working directory: " . getcwd() . "\\n";
+echo "Script directory: " . __DIR__ . "\\n";
+echo "Looking for: " . realpath('../php/classes/Auth.php') . "\\n";</pre>
+                </div>
+            `;
+      }
+    </script>
+  </body>
+</html>
