@@ -117,13 +117,14 @@ class User
             }
 
             if (empty($updateFields)) {
-                throw new Exception("No valid fields to update");
-            }
-
-            $values[] = $userId;
-            $sql = "UPDATE users SET " . implode(', ', $updateFields) . " WHERE id = ?";
-
-            $stmt = $this->db->getConnection()->prepare($sql);
+            
+// ...existing code...
+$stmt = $this->db->getConnection()->prepare(
+    "SELECT id, username, email, full_name, phone, status, created_at 
+     FROM users ORDER BY created_at DESC LIMIT $limit OFFSET $offset"
+);
+$stmt->execute();
+// ...existing code...
             $stmt->execute($values);
 
             return [
